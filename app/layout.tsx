@@ -7,6 +7,7 @@ import { SessionProvider } from "@/components/session-provider";
 import { Header } from "@/components/(root)/components//header";
 import { Footer } from "@/components/(root)/components/footer";
 import { Toaster } from "sonner";
+import { UserProvider } from "@/context/user-context";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -138,18 +139,20 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <SessionProvider>
-          <ThemeProvider>
-            <div className="flex min-h-screen flex-col">
-              <Header />
-              <main className="flex-1">
-                {children}
-                <Toaster />
-              </main>
-              <Footer />
-              <Navigation />
-            </div>
-          </ThemeProvider>
+      <SessionProvider>
+          <UserProvider>
+            <ThemeProvider>
+              <div className="flex min-h-screen flex-col">
+                <Header />
+                <main className="flex-1">
+                  {children}
+                  <Toaster />
+                </main>
+                <Footer />
+                <Navigation />
+              </div>
+            </ThemeProvider>
+          </UserProvider>
         </SessionProvider>
       </body>
     </html>
