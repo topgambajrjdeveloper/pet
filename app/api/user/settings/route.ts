@@ -69,17 +69,11 @@ export async function PUT(request: Request, { params }: { params: { id: string }
   }
 
   try {
-    const { name, email, allowLocationSharing, latitude, longitude } = await request.json()
+    const { name, email } = await request.json()
 
     const updatedUser = await prisma.user.update({
       where: { id: userId },
-      data: {
-        name,
-        email,
-        allowLocationSharing,
-        latitude: latitude || null,
-        longitude: longitude || null,
-      },
+      data: { name, email },
     })
 
     return NextResponse.json(updatedUser)
@@ -88,6 +82,4 @@ export async function PUT(request: Request, { params }: { params: { id: string }
     return NextResponse.json({ error: "Error al actualizar el perfil" }, { status: 500 })
   }
 }
-
-
 

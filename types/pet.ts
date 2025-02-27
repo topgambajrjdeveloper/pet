@@ -16,10 +16,17 @@ export interface UserData {
 }
 
 export interface Post {
-  id: number
-  image: string
-  description: string
-  date: string
+  id: number;
+  petName: string;
+  petType: string;
+  image?: string;
+  userId: number;
+  user: {
+    id: number;
+    name: string;
+    email: string;
+    image?: string;
+  };
 }
 
 export interface Friend {
@@ -33,4 +40,13 @@ export interface Event {
   name: string;
   date: string;
   location: string;
+}
+
+export interface Session {
+  user: {
+    id: number;
+    name: string;
+    email: string;
+    image?: string;
+  };
 }

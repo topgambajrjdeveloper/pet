@@ -22,6 +22,8 @@ model User {
   allowLocationSharing Boolean   @default(false)
   emailVerified        DateTime?
   posts                Post[]
+  latitude             Float?
+  longitude            Float?
   createdAt            DateTime  @default(now())
   updatedAt            DateTime  @updatedAt
 }
@@ -34,6 +36,7 @@ model Post {
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
   @@index([userId])
 }
 
@@ -45,4 +48,3 @@ model VerificationToken {
 
   @@unique([email, token])
 }
-
